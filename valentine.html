@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+
+        body {
+            background-color: black;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #d63384;
+        }
+
+        .container {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        #image-preview {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 10px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .preview-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 192, 203, 0.5);
+            position: absolute;
+        }
+
+        .buttons {
+            margin-top: 300px;
+            position: relative;
+        }
+
+        .btn {
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .yes {
+            background-color: #ff69b4;
+            color: white;
+        }
+
+        .no {
+            background-color: #ff69b4;
+            color: white;
+            position: absolute;
+        }
+
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 1.2rem;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+
+        .celebration img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            animation: pop 1s ease-in-out infinite;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Winnie Amakutwa, Will You Be My Valentine? ❤️</h1>
+        <div id="image-preview">
+            <img src="winnie_picture.jpg" class="preview-img" style="top: 50px; left: 20px;" alt="Winnie 1">
+            <img src="winnie_picture2.jpg" class="preview-img" style="top: 100px; right: 50px;" alt="Winnie 2">
+            <img src="winnie_picture3.jpg" class="preview-img" style="top: 200px; left: 150px;" alt="Winnie 3">
+            <img src="winnie_picture4.jpg" class="preview-img" style="top: 300px; right: 200px;" alt="Winnie 4">
+            <img src="winnie_picture5.jpg" class="preview-img" style="top: 400px; left: 250px;" alt="Winnie 5">
+            <img src="winnie_picture6.jpg" class="preview-img" style="top: 500px; right: 100px;" alt="Winnie 6">
+            <img src="winnie_picture7.jpg" class="preview-img" style="top: 600px; left: 50px;" alt="Winnie 7">
+        </div>
+        <div class="buttons">
+            <button class="btn yes" onclick="celebrate()">Yes</button>
+            <button class="btn no" id="noBtn">No</button>
+        </div>
+    </div>
+
+    <div id="celebration" class="celebration">
+        <p>🎉 I knew you couldn't resist my charm! 🎉</p>
+    </div>
+
+    <script>
+        let noButton = document.getElementById('noBtn');
+        noButton.addEventListener('mouseover', function () {
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 100);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+
+        function celebrate() {
+            document.getElementById('celebration').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('celebration').style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
+
