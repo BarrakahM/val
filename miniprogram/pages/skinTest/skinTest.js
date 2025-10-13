@@ -1,0 +1,1 @@
+Page({ data:{ result:null }, onSubmit(e){ const v = e.detail.value; const isOil = v.tzone === "油" || v.cheek === "油"; const type = isOil?"油性肌": (v.cheek === "敏感"?"敏感肌":"中性肌"); const products = [ {id:1,name:"氨基酸洁面",price:69}, {id:2,name:"烟酰胺精华",price:129} ]; this.setData({ result:{ type:"肤质类型: "+type, products } }); } })
