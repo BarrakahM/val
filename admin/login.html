@@ -25,6 +25,7 @@
     <div class="text-muted small mt-3">默认账号：admin / admin123</div>
   </div>
   <script>
+    const BASE_URL = (localStorage.getItem('apiBase') || 'http://localhost:3000').replace(/\/$/, '');
     const form = document.getElementById('loginForm');
     const msg = document.getElementById('msg');
     form.addEventListener('submit', async (e) => {
@@ -33,18 +34,25 @@
       const fd = new FormData(form);
       const username = fd.get('username');
       const password = fd.get('password');
-      if (username === 'admin' && password === 'admin123') {
-        let ip = 'unknown';
-        try {
-          const res = await fetch('https://api.ipify.org?format=json');
-          const data = await res.json();
-          ip = data.ip || 'unknown';
-        } catch (e) {}
-        const loginAt = new Date().toLocaleString();
-        localStorage.setItem('adminLogin', JSON.stringify({ username, loginAt, ip }));
+      let ip = 'unknown';
+      try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        ip = data.ip || 'unknown';
+      } catch (e) {}
+      const loginAt = new Date().toLocaleString();
+      try {
+        const r = await fetch(`${BASE_URL}/api/admin/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password, ip, loginAt })
+        });
+        if (!r.ok) throw new Error('登录失败');
+        const data = await r.json();
+        localStorage.setItem('adminLogin', JSON.stringify({ username: data.user.username, loginAt: data.loginAt || loginAt, ip: data.ip || ip }));
         location.href = 'index.html';
-      } else {
-        msg.textContent = '用户名或密码错误';
+      } catch (err) {
+        msg.textContent = '用户名或密码错误或服务器不可用';
         msg.classList.remove('d-none');
       }
     });
