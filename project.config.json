@@ -1,0 +1,26 @@
+{
+  "miniprogramRoot": "miniprogram/",
+  "projectname": "donghong-guoji-miniapp",
+  "appid": "touristappid",
+  "packOptions": {
+    "ignore": []
+  },
+  "compileType": "miniprogram",
+  "setting": {
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": false,
+    "urlCheck": false
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "home",
+          "pathName": "pages/home/home"
+        }
+      ]
+    }
+  }
+}
